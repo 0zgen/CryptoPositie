@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style type="text/css">
+#bgg {
+  background: url(/images/btc.jpg) no-repeat center center fixed;
+}
+
+	</style>
+	<title>Crypto Positie Berekenen</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+
+	<div style="background-image: url(./images/btc.jpg);background-size: cover;" class="container-contact100">
+		<div class="wrap-contact100">
+				<span class="contact100-form-title">
+					<img src="./images/bit.gif" height="160px"><br>
+					Crypto Trading Positie Berekenen
+				</span>
+
+				<div class="wrap-input100">
+					<span class="label-input100">Account Grootte</span>
+					<input class="input100" type="number" id="accountGrootte" name="name" placeholder="1000">USDT
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100">
+					<span class="label-input100">Account Risk in %</span>
+					<input class="input100" type="number" id="risk" name="Risk" placeholder="1">
+					<span class="focus-input100"></span>%
+				</div>
+
+				<div class="wrap-input100">
+					<span class="label-input100">Stoploss afstand van Positie %</span>
+					<input class="input100" type="number" id="stoploss" name="sl" placeholder="3">
+					<span class="focus-input100"></span>%
+				</div>
+
+				<div class="container-contact100-form-btn">
+					<div class="wrap-contact100-form-btn">
+						<div class="contact100-form-bgbtn"></div>
+						<button class="contact100-form-btn" onclick="berekenen()">
+							<span>
+								Berekenen
+								<i class="fa fa-calculator m-l-7" aria-hidden="true"></i>
+							</span>
+						</button>
+					</div>
+				</div>
+
+				<div class="wrap-input100">
+					<span class="label-input100">Percentage</span>
+					<input class="input100" type="text" id="eindPercentage" name="sl" placeholder="100">
+					<span class="focus-input100"></span>%
+				</div>
+
+				<div class="wrap-input100">
+					<span class="label-input100">Positiegrootte</span>
+					<input class="input100" type="text" id="uitkomst" name="sl" placeholder="333">
+					<span class="focus-input100"></span>USDT
+				</div>
+
+
+<div class="container-contact100-form-btn">
+					<div class="wrap-contact100-form-btn">
+						<div class="contact100-form-bgbtn"></div>
+						<button class="contact100-form-btn" onclick="copy()">
+							<span>
+								Kopiëren
+								<i class="fa fa-copy m-l-7" aria-hidden="true"></i>
+							</span>
+						</button>
+					</div>
+				</div><br>
+
+
+<script>
+
+function getPercentageChange(oldNumber, newNumber){
+    var decreaseValue = oldNumber - newNumber;
+
+    return (decreaseValue / oldNumber) * 100;
+}
+
+function berekenen() {
+    var account = document.getElementById("accountGrootte").value;
+    var risk = document.getElementById("risk").value;
+    var stop = document.getElementById("stoploss").value;
+    var risk1 = risk / 100;
+    var stop1 = stop / 100;
+    var uitkomst = account * risk1 / stop1;
+    document.getElementById("uitkomst").value = uitkomst.toFixed(2);
+
+   
+
+
+    document.getElementById("eindPercentage").value = 100 - getPercentageChange(account, uitkomst).toFixed(2);
+
+}
+
+function copy(){
+
+
+	var input = document.getElementById("uitkomst");
+  input.select();
+  input.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+}
+</script>
+
+</body>
+</html>
